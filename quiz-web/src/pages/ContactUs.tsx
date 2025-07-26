@@ -195,56 +195,7 @@ const ContactUs: React.FC = () => {
                   </div>
                 </form>}
             </div>
-            {/* FAQ Section */}
-            <div className="bg-white rounded-lg shadow-md p-6 mt-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">
-                Frequently Asked Questions
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="flex items-center text-lg font-medium text-gray-900">
-                    <HelpCircleIcon className="h-5 w-5 text-blue-600 mr-2" />
-                    How do I reset my password?
-                  </h3>
-                  <p className="mt-2 text-gray-600 pl-7">
-                    Click on the "Forgot Password" link on the login page and
-                    follow the instructions sent to your email address.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="flex items-center text-lg font-medium text-gray-900">
-                    <HelpCircleIcon className="h-5 w-5 text-blue-600 mr-2" />
-                    Can I access quizzes from previous years?
-                  </h3>
-                  <p className="mt-2 text-gray-600 pl-7">
-                    Yes, all quizzes from previous years remain accessible
-                    through your account. Simply navigate to the relevant year
-                    section.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="flex items-center text-lg font-medium text-gray-900">
-                    <HelpCircleIcon className="h-5 w-5 text-blue-600 mr-2" />
-                    How are quiz scores calculated?
-                  </h3>
-                  <p className="mt-2 text-gray-600 pl-7">
-                    Quiz scores are calculated as the percentage of correct
-                    answers out of the total number of questions. A score of 60%
-                    or higher is considered passing.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="flex items-center text-lg font-medium text-gray-900">
-                    <HelpCircleIcon className="h-5 w-5 text-blue-600 mr-2" />
-                    Can I suggest new quiz topics?
-                  </h3>
-                  <p className="mt-2 text-gray-600 pl-7">
-                    Absolutely! We welcome topic suggestions from students.
-                    Please use the contact form above to submit your ideas.
-                  </p>
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>
