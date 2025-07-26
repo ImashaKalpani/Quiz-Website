@@ -123,7 +123,7 @@ const Profile: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-[#e5efef] rounded-lg shadow-md p-6">
               <div className="flex flex-col items-center mb-6">
                 <div className="relative h-32 w-32 rounded-full overflow-hidden mb-4 border border-gray-300 cursor-pointer" title="Click to change profile photo">
                   {profilePhoto ? (
@@ -181,7 +181,7 @@ const Profile: React.FC = () => {
           {/* Right Column */}
           <div className="lg:col-span-2">
             {/* Profile Info Form */}
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div className="bg-[#e5efef] rounded-lg shadow-md p-6 mb-8">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-gray-900">Profile Information</h2>
                 {!isEditMode && (
@@ -334,7 +334,7 @@ const Profile: React.FC = () => {
             </div>
 
             {/* Quiz History */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-[#e5efef] rounded-lg shadow-md p-6">
               <div className="flex items-center mb-6">
                 <BarChart2Icon className="h-5 w-5 text-blue-600 mr-2" />
                 <h2 className="text-xl font-semibold text-gray-900">Quiz History</h2>

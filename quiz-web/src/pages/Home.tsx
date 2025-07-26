@@ -64,7 +64,7 @@ const Home: React.FC = () => {
       </div>
       {/* Welcome Back Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="bg-[#f5f7f7] shadow-md rounded-lg p-6">
           <div className="flex items-center">
             <div className="flex-shrink-0 bg-blue-100 rounded-full p-3">
               <BookOpenIcon className="h-8 w-8 text-blue-600" />
