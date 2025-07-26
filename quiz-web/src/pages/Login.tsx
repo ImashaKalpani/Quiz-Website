@@ -32,7 +32,7 @@ const Login: React.FC = () => {
       setIsLoading(false);
     }
   };
-  return <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  return <div className="min-h-screen  flex flex-col justify-center py-12 sm:px-6 lg:px-8" style={{ backgroundColor: '#b9e4f4' }}>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <BookOpenIcon className="h-12 w-12 text-blue-600" />
