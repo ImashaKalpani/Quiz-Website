@@ -1,86 +1,58 @@
-import React, { useEffect, useState, createContext, useContext } from 'react';
+// src/context/AuthContext.tsx
+import React, { createContext, useContext, useState, useEffect } from 'react';
+
 interface User {
   id: string;
-  name: string;
+  username: string;
   email: string;
+  // Add other user properties like name if applicable
+  name?: string;
 }
+
 interface AuthContextType {
   user: User | null;
-  isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<boolean>;
-  register: (name: string, email: string, password: string) => Promise<boolean>;
+  login: (userData: User) => void;
   logout: () => void;
 }
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-export const AuthProvider: React.FC<{
-  children: React.ReactNode;
-}> = ({
-  children
-}) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // Try to load user from localStorage on initial load
+  const [user, setUser] = useState<User | null>(() => {
+    try {
+      const storedUser = localStorage.getItem('smartmind_user');
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch (error) {
+      console.error("Failed to parse user from localStorage:", error);
+      return null;
+    }
+  });
+
+  // Save user to localStorage whenever it changes
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
+    if (user) {
+      localStorage.setItem('smartmind_user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('smartmind_user');
     }
-  }, []);
-  const login = async (email: string, password: string): Promise<boolean> => {
-    try {
-      // Mock login - in a real app, this would call an API
-      if (email && password) {
-        const mockUser = {
-          id: '1',
-          name: email.split('@')[0],
-          email
-        };
-        setUser(mockUser);
-        setIsAuthenticated(true);
-        localStorage.setItem('user', JSON.stringify(mockUser));
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.error('Login error:', error);
-      return false;
-    }
+  }, [user]);
+
+  const login = (userData: User) => {
+    setUser(userData);
   };
-  const register = async (name: string, email: string, password: string): Promise<boolean> => {
-    try {
-      // Mock registration - in a real app, this would call an API
-      if (name && email && password) {
-        const mockUser = {
-          id: '1',
-          name,
-          email
-        };
-        setUser(mockUser);
-        setIsAuthenticated(true);
-        localStorage.setItem('user', JSON.stringify(mockUser));
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.error('Registration error:', error);
-      return false;
-    }
-  };
+
   const logout = () => {
     setUser(null);
-    setIsAuthenticated(false);
-    localStorage.removeItem('user');
   };
-  return <AuthContext.Provider value={{
-    user,
-    isAuthenticated,
-    login,
-    register,
-    logout
-  }}>
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
-    </AuthContext.Provider>;
+    </AuthContext.Provider>
+  );
 };
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
