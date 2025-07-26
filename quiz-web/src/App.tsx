@@ -19,35 +19,37 @@ export function App() {
   return <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Layout />}>
-            <Route index element={<ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>} />
-            <Route path="/year/:yearId" element={<ProtectedRoute>
-                  <ModuleList />
-                </ProtectedRoute>} />
-            <Route path="/module/:moduleId/description" element={<ProtectedRoute>
-                  <ModuleDescription />
-                </ProtectedRoute>} />
-            <Route path="/module/:moduleId/quizzes" element={<ProtectedRoute>
-                  <QuizSetup />
-                </ProtectedRoute>} />
-            <Route path="/module/:moduleId/quiz/:quizId" element={<ProtectedRoute>
-                  <QuizPage />
-                </ProtectedRoute>} />
-            <Route path="/module/:moduleId/quiz/:quizId/result" element={<ProtectedRoute>
-                  <ResultPage />
-                </ProtectedRoute>} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/profile" element={<ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>} />
-          </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} /> {/*  Public Home Page */}
+
+              <Route path="/year/:yearId" element={
+                <ProtectedRoute><ModuleList /></ProtectedRoute>
+              } />
+              <Route path="/module/:moduleId/description" element={
+                <ProtectedRoute><ModuleDescription /></ProtectedRoute>
+              } />
+              <Route path="/module/:moduleId/quizzes" element={
+                <ProtectedRoute><QuizSetup /></ProtectedRoute>
+              } />
+              <Route path="/module/:moduleId/quiz/:quizId" element={
+                <ProtectedRoute><QuizPage /></ProtectedRoute>
+              } />
+              <Route path="/module/:moduleId/quiz/:quizId/result" element={
+                <ProtectedRoute><ResultPage /></ProtectedRoute>
+              } />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/profile" element={
+                <ProtectedRoute><Profile /></ProtectedRoute>
+              } />
+            </Route>
+
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+
       </Router>
     </AuthProvider>;
 }

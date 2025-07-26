@@ -66,7 +66,7 @@ const quizData = {
       id: 5,
       text: 'Which of the following is NOT a principle of OOP?',
       options: ['Inheritance', 'Encapsulation', 'Polymorphism', 'Fragmentation'],
-      correctAnswer: 3
+      correctAnswer: 4
     }]
   }
 };
