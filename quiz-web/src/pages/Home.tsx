@@ -14,21 +14,21 @@ const yearsData = [{
   name: 'Second Year',
   description: 'Intermediate programming and systems',
   icon: <AwardIcon className="h-8 w-8 text-green-500" />,
-  modules: 12,
+  modules: 10,
   color: 'bg-green-500'
 }, {
   id: 3,
   name: 'Third Year',
   description: 'Advanced concepts and specializations',
   icon: <TrendingUpIcon className="h-8 w-8 text-purple-500" />,
-  modules: 8,
+  modules: 10,
   color: 'bg-purple-500'
 }, {
   id: 4,
   name: 'Fourth Year',
   description: 'Professional preparation and projects',
   icon: <UsersIcon className="h-8 w-8 text-orange-500" />,
-  modules: 6,
+  modules: 10,
   color: 'bg-orange-500'
 }];
 const Home: React.FC = () => {
