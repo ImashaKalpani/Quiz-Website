@@ -1,3 +1,4 @@
+// src/pages/Home.tsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpenIcon, GraduationCapIcon, AwardIcon, TrendingUpIcon, UsersIcon } from 'lucide-react';
@@ -50,24 +51,25 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!user?.id) { // Ensure user ID is available for personalized data
-                // Handle case where user is not logged in or user ID is missing
+            // Check if user is logged in and has an ID before fetching personalized data
+            if (!user || !user.id) {
+                console.warn("Home.tsx: User not logged in or user ID is missing. Skipping personalized data fetch.");
                 setLoading(false);
-                setError("User not logged in or user ID is missing.");
-                // You might want to redirect to login or show a different UI
+                // Set a more specific error or handle redirect to login
+                setError("Please log in to view your personalized dashboard.");
                 return;
             }
 
             try {
-                // Fetch Years data
+                // Fetch Years data (this can be fetched regardless of user login, if desired)
                 const yearsResponse = await fetch(`${API_BASE_URL}/years`);
                 if (!yearsResponse.ok) {
-                    throw new Error(`HTTP error! status: ${yearsResponse.status}`);
+                    throw new Error(`HTTP error! Status: ${yearsResponse.status} for /years`);
                 }
                 const years: Year[] = await yearsResponse.json();
                 setYearsData(years);
 
-                // Fetch In Progress Quiz
+                // Fetch In Progress Quiz (requires user ID)
                 const inProgressResponse = await fetch(`${API_BASE_URL}/progress/user/${user.id}/in-progress`);
                 if (inProgressResponse.ok) {
                     const inProgress: UserProgress = await inProgressResponse.json();
@@ -75,10 +77,10 @@ const Home: React.FC = () => {
                 } else if (inProgressResponse.status === 404) {
                     setInProgressQuiz(null); // No in-progress quiz found
                 } else {
-                    throw new Error(`HTTP error! status: ${inProgressResponse.status} for in-progress quiz`);
+                    throw new Error(`HTTP error! Status: ${inProgressResponse.status} for in-progress quiz`);
                 }
 
-                // Fetch Last Completed Quiz
+                // Fetch Last Completed Quiz (requires user ID)
                 const completedResponse = await fetch(`${API_BASE_URL}/progress/user/${user.id}/last-completed`);
                 if (completedResponse.ok) {
                     const completed: UserProgress = await completedResponse.json();
@@ -86,29 +88,42 @@ const Home: React.FC = () => {
                 } else if (completedResponse.status === 404) {
                     setLastCompletedQuiz(null); // No completed quiz found
                 } else {
-                    throw new Error(`HTTP error! status: ${completedResponse.status} for last completed quiz`);
+                    throw new Error(`HTTP error! Status: ${completedResponse.status} for last completed quiz`);
                 }
 
                 // Placeholder for User Stats (You'll need a backend endpoint for this)
-                // For now, using static data or calculating on frontend if possible
-                // If you create an endpoint: fetch(`${API_BASE_URL}/stats/user/${user.id}`);
+                // If you create an endpoint, uncomment and use:
+                /*
+                const statsResponse = await fetch(`${API_BASE_URL}/stats/user/${user.id}`);
+                if (statsResponse.ok) {
+                    const stats: UserStats = await statsResponse.json();
+                    setUserStats(stats);
+                } else {
+                    console.warn(`Home.tsx: Could not fetch user stats: Status ${statsResponse.status}`);
+                    setUserStats(null);
+                }
+                */
+                // For now, using static data as a fallback if no backend endpoint exists yet
                 setUserStats({
-                    totalQuizzesTaken: 24, // Replace with fetched data
-                    averageScore: 86, // Replace with fetched data
-                    modulesExplored: 18, // Replace with fetched data
-                    rankAmongPeers: "Top 15%" // Replace with fetched data
+                    totalQuizzesTaken: 24,
+                    averageScore: 86,
+                    modulesExplored: 18,
+                    rankAmongPeers: "Top 15%"
                 });
 
             } catch (err: any) {
-                console.error("Failed to fetch data:", err);
-                setError(`Failed to load data: ${err.message}`);
+                console.error("Home.tsx: Failed to fetch data:", err);
+                // Display a user-friendly error message
+                setError(`Failed to load data: ${err.message || 'Please check your network connection and backend server.'}`);
             } finally {
                 setLoading(false);
             }
         };
 
+        // This effect runs when the component mounts or when the 'user' object changes.
+        // It's crucial that it runs *after* a successful login, when 'user' is populated.
         fetchData();
-    }, [user]); // Re-run effect if user changes (e.g., after login)
+    }, [user]); // Dependency array: re-run this effect if the 'user' object changes
 
     if (loading) {
         return (
@@ -118,6 +133,7 @@ const Home: React.FC = () => {
         );
     }
 
+    // Display error if data loading failed or user is not logged in
     if (error) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-red-50">
@@ -165,7 +181,7 @@ const Home: React.FC = () => {
                             </div>
                             <div className="ml-4">
                                 <h2 className="text-xl font-semibold text-gray-800">
-                                    Welcome back, {user.name || user.username || 'Student'}!
+                                    Welcome back, {user.username || 'Student'}! {/* Use user.username */}
                                 </h2>
                                 <p className="text-gray-600">Continue your learning journey</p>
                             </div>
