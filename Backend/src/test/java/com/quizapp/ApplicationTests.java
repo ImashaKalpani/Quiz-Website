@@ -1,10 +1,10 @@
-package com.smartmind;
+package com.quizapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SmartMindApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {
