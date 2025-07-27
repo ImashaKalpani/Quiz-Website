@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpenIcon, GraduationCapIcon, AwardIcon, TrendingUpIcon, UsersIcon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { fetchAllModules } from '../services/api';
 const yearsData = [{
   id: 1,
   name: 'First Year',
