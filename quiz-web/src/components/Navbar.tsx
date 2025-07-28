@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { MenuIcon, XIcon, BookOpenIcon, UserIcon, LogOutIcon } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import {
+  MenuIcon,
+  XIcon,
+  BookOpenIcon,
+  UserIcon,
+  LogOutIcon,
+} from "lucide-react";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +19,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     // Get profile photo from localStorage
-    const storedPhoto = localStorage.getItem('profilePhoto');
+    const storedPhoto = localStorage.getItem("profilePhoto");
     if (storedPhoto) {
       setProfilePhoto(storedPhoto);
     }
@@ -21,7 +27,7 @@ const Navbar: React.FC = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/home");
   };
 
   return (
@@ -31,19 +37,30 @@ const Navbar: React.FC = () => {
           <div className="flex">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <BookOpenIcon className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">IT Quiz</span>
+              <span className="ml-2 text-xl font-bold text-gray-900">
+                IT Quiz
+              </span>
             </Link>
           </div>
 
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
             <div className="flex space-x-4">
-              <Link to="/" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+              <Link
+                to="/"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+              >
                 Home
               </Link>
-              <Link to="/about" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+              <Link
+                to="/about"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+              >
                 About Us
               </Link>
-              <Link to="/contact" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+              <Link
+                to="/contact"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+              >
                 Contact
               </Link>
             </div>
@@ -100,7 +117,11 @@ const Navbar: React.FC = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
             >
-              {isMenuOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+              {isMenuOpen ? (
+                <XIcon className="h-6 w-6" />
+              ) : (
+                <MenuIcon className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -148,8 +169,12 @@ const Navbar: React.FC = () => {
                     )}
                   </div>
                   <div className="ml-3">
-                    <div className="text-base font-medium text-gray-800">{user?.name}</div>
-                    <div className="text-sm font-medium text-gray-500">{user?.email}</div>
+                    <div className="text-base font-medium text-gray-800">
+                      {user?.name}
+                    </div>
+                    <div className="text-sm font-medium text-gray-500">
+                      {user?.email}
+                    </div>
                   </div>
                 </div>
                 <div className="mt-3 space-y-1">
