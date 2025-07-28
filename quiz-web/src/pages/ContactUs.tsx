@@ -3,6 +3,8 @@ import { MapPinIcon, PhoneIcon, MailIcon, MessageCircleIcon, SendIcon, HelpCircl
 import Breadcrumb from '../components/Breadcrumb';
 import useIntersectionObserver from '../hooks/useIntersectionObserver'; // Import the new hook
 
+
+
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
