@@ -22,12 +22,13 @@ const AboutUs: React.FC = () => {
     };
   }, []);
 
-  // Use the intersection observer for each section, specifying the exact HTML element type
-  const [heroRef, heroInView] = useIntersectionObserver<HTMLElement>({ threshold: 0.2 }); // It's a <section>
-  const [missionRef, missionInView] = useIntersectionObserver<HTMLElement>({ threshold: 0.2 }); // It's a <section>
-  const [featuresRef, featuresInView] = useIntersectionObserver<HTMLHeadingElement>({ threshold: 0.1 }); // It's an <h2>
-  const [teamRef, teamInView] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 }); // It's a <section>
-  const [testimonialsRef, testimonialsInView] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 }); // It's a <section>
+   // Use the intersection observer for each section, specifying the exact HTML element type
+  const [heroRef, heroInView] = useIntersectionObserver<HTMLElement>({ root: null, rootMargin: '0px', threshold: 0.2 }); // It's a <section>
+  const [missionRef, missionInView] = useIntersectionObserver<HTMLElement>({ root: null, rootMargin: '0px', threshold: 0.2 }); // It's a <section>
+  const [featuresRef, featuresInView] = useIntersectionObserver<HTMLHeadingElement>({ root: null, rootMargin: '0px', threshold: 0.1 }); // It's an <h2>
+  const [teamRef, teamInView] = useIntersectionObserver<HTMLElement>({ root: null, rootMargin: '0px', threshold: 0.1 }); // It's a <section>
+  const [testimonialsRef, testimonialsInView] = useIntersectionObserver<HTMLElement>({ root: null, rootMargin: '0px', threshold: 0.1 }); // It's a <section>
+
 
   return (
     // Ultimate Page Container: Base background, smooth font
