@@ -63,6 +63,10 @@ const ContactUs: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<<<<<<< HEAD
+=======
+          {/* Contact Information Section with animation */}
+>>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
           <div
             ref={infoRef}
             className={`lg:col-span-1 ${infoInView ? 'animate-element-pop-up' : 'opacity-0 translate-y-8'}`}
@@ -143,6 +147,10 @@ const ContactUs: React.FC = () => {
             </div>
           </div>
 
+<<<<<<< HEAD
+=======
+          {/* Contact Form */}
+>>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
           <div
             ref={formRef}
             className={`lg:col-span-2 ${formInView ? 'animate-element-pop-up' : 'opacity-0 translate-y-8'}`}
