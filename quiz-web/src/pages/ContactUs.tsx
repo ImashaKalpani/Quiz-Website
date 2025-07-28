@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MapPinIcon, PhoneIcon, MailIcon, MessageCircleIcon, SendIcon, HelpCircleIcon, CheckCircleIcon } from 'lucide-react';
 import Breadcrumb from '../components/Breadcrumb';
-import useIntersectionObserver from '../hooks/useIntersectionObserver';
+import useIntersectionObserver from '../hooks/useIntersectionObserver'; // Import the new hook
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,12 +13,16 @@ const ContactUs: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formError, setFormError] = useState('');
 
-  const [titleRef, titleInView] = useIntersectionObserver<HTMLDivElement>({ root: null, rootMargin: '0px', threshold: 0.5 });
-  const [infoRef, infoInView] = useIntersectionObserver<HTMLDivElement>({ root: null, rootMargin: '0px', threshold: 0.1 });
-  const [formRef, formInView] = useIntersectionObserver<HTMLDivElement>({ root: null, rootMargin: '0px', threshold: 0.1 });
+  // Use the intersection observer for each section, specifying the exact HTML element type
+  const [titleRef, titleInView] = useIntersectionObserver<HTMLDivElement>({ root: null, rootMargin: '0px', threshold: 0.5 }); // This is a <div>
+  const [infoRef, infoInView] = useIntersectionObserver<HTMLDivElement>({ root: null, rootMargin: '0px', threshold: 0.1 }); // This is a <div>
+  const [formRef, formInView] = useIntersectionObserver<HTMLDivElement>({ root: null, rootMargin: '0px', threshold: 0.1 }); // This is a <div>
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const {
+      name,
+      value
+    } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -48,12 +52,15 @@ const ContactUs: React.FC = () => {
   };
 
   return (
+    // Main page container with overall page reveal animation and consistent typography
     <div className="min-h-screen bg-smartmind-very-light text-gray-800 font-sans leading-relaxed animate-page-reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        {/* Breadcrumb - Static, no animation needed */}
         <Breadcrumb items={[{ label: 'Contact Us' }]} />
 
+        {/* Page Title Section with animation */}
         <div
-          ref={titleRef}
+          ref={titleRef} // No 'as React.RefObject<HTMLDivElement>' cast needed anymore
           className={`mb-10 ${titleInView ? 'animate-element-pop-up' : 'opacity-0 translate-y-8'}`}
         >
           <h1 className="text-4xl font-extrabold text-smartmind-dark mb-2">Contact Us</h1>
@@ -63,12 +70,9 @@ const ContactUs: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-<<<<<<< HEAD
-=======
           {/* Contact Information Section with animation */}
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
           <div
-            ref={infoRef}
+            ref={infoRef} // No 'as React.RefObject<HTMLDivElement>' cast needed anymore
             className={`lg:col-span-1 ${infoInView ? 'animate-element-pop-up' : 'opacity-0 translate-y-8'}`}
           >
             <div className="bg-white rounded-xl shadow-lg p-8 h-full">
@@ -147,12 +151,9 @@ const ContactUs: React.FC = () => {
             </div>
           </div>
 
-<<<<<<< HEAD
-=======
           {/* Contact Form */}
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
           <div
-            ref={formRef}
+            ref={formRef} // No 'as React.RefObject<HTMLDivElement>' cast needed anymore
             className={`lg:col-span-2 ${formInView ? 'animate-element-pop-up' : 'opacity-0 translate-y-8'}`}
           >
             <div className="bg-white rounded-xl shadow-lg p-8">
@@ -161,7 +162,7 @@ const ContactUs: React.FC = () => {
               </h2>
               {formSubmitted ? (
                 <div className="bg-green-50 border border-green-200 text-green-700 px-6 py-8 rounded-xl flex flex-col items-center text-center shadow-inner">
-                  <CheckCircleIcon className="h-16 w-16 text-green-500 mb-6" />
+                  <CheckCircleIcon className="h-16 w-16 text-green-500 mb-6" /> {/* bounce-in class can be added here if defined in tailwind.config.js */}
                   <h3 className="text-2xl font-bold text-gray-900">Thank You!</h3>
                   <p className="mt-3 text-lg">
                     Your message has been sent successfully. We'll get back to

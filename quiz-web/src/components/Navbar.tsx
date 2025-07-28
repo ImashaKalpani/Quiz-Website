@@ -1,20 +1,7 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import {
-  MenuIcon,
-  XIcon,
-  BookOpenIcon,
-  UserIcon,
-  LogOutIcon,
-} from "lucide-react";
-=======
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Assuming AuthContext provides user and logout
 import { MenuIcon, XIcon, BookOpenIcon, UserIcon, LogOutIcon } from 'lucide-react';
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +13,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     // Get profile photo from localStorage
-    const storedPhoto = localStorage.getItem("profilePhoto");
+    const storedPhoto = localStorage.getItem('profilePhoto');
     if (storedPhoto) {
       setProfilePhoto(storedPhoto);
     }
@@ -34,71 +21,46 @@ const Navbar: React.FC = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/home");
+    navigate('/hmoe');
   };
 
   return (
     // Navbar container with shadow and a subtle entrance animation
     <nav className="bg-white shadow-lg animate-page-reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<<<<<<< HEAD
-        <div className="flex justify-between h-16">
-          <div className="flex">
-            <Link to="/" className="flex-shrink-0 flex items-center">
-              <BookOpenIcon className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">
-                IT Quiz
-              </span>
-=======
         <div className="flex justify-between h-16 items-center">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center group">
               <BookOpenIcon className="h-8 w-8 text-smartmind-dark group-hover:text-smartmind-medium transition-colors duration-300 transform group-hover:scale-105" />
               <span className="ml-2 text-2xl font-extrabold text-smartmind-dark group-hover:text-smartmind-medium transition-colors duration-300">SmartMind</span>
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
             </Link>
           </div>
 
           {/* Desktop Navigation Links */}
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
-<<<<<<< HEAD
-            <div className="flex space-x-4">
-              <Link
-                to="/"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-=======
             <div className="flex space-x-6">
               <Link
                 to="/"
                 className="px-3 py-2 rounded-md text-sm font-semibold text-gray-700
                            hover:text-smartmind-dark hover:bg-smartmind-very-light
                            transition-all duration-300 transform hover:scale-105"
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
               >
                 Home
               </Link>
               <Link
                 to="/about"
-<<<<<<< HEAD
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-=======
                 className="px-3 py-2 rounded-md text-sm font-semibold text-gray-700
                            hover:text-smartmind-dark hover:bg-smartmind-very-light
                            transition-all duration-300 transform hover:scale-105"
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
               >
                 About Us
               </Link>
               <Link
                 to="/contact"
-<<<<<<< HEAD
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-=======
                 className="px-3 py-2 rounded-md text-sm font-semibold text-gray-700
                            hover:text-smartmind-dark hover:bg-smartmind-very-light
                            transition-all duration-300 transform hover:scale-105"
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
               >
                 Contact
               </Link>
@@ -170,18 +132,11 @@ const Navbar: React.FC = () => {
               aria-expanded={isMenuOpen ? "true" : "false"}
               aria-controls="mobile-menu"
             >
-<<<<<<< HEAD
-              {isMenuOpen ? (
-                <XIcon className="h-6 w-6" />
-              ) : (
-                <MenuIcon className="h-6 w-6" />
-=======
               <span className="sr-only">Open main menu</span>
               {isMenuOpen ? (
                 <XIcon className="h-6 w-6 transition-transform duration-300 rotate-90" />
               ) : (
                 <MenuIcon className="h-6 w-6 transition-transform duration-300" />
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
               )}
             </button>
           </div>
@@ -237,17 +192,8 @@ const Navbar: React.FC = () => {
                     )}
                   </div>
                   <div className="ml-3">
-<<<<<<< HEAD
-                    <div className="text-base font-medium text-gray-800">
-                      {user?.name}
-                    </div>
-                    <div className="text-sm font-medium text-gray-500">
-                      {user?.email}
-                    </div>
-=======
                     <div className="text-base font-semibold text-gray-800">{user?.name}</div>
                     <div className="text-sm font-medium text-gray-500">{user?.email}</div>
->>>>>>> 6e503a0d94ac4250027e28fa9d191fa534cba277
                   </div>
                 </div>
                 <div className="space-y-1 px-2">
