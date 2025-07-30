@@ -107,7 +107,7 @@ const Home: React.FC = () => {
             <div className="inline-flex rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
               <Link
                 to="/year/1"
-                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-full text-white bg-smartmind-light hover:bg-smartmind-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-smartmind-light"
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-full text-smartmind-dark bg-smartmind-light hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-smartmind-light"
               >
                 <PlayCircleIcon className="h-5 w-5 mr-2" /> Start Quizzing
               </Link>
