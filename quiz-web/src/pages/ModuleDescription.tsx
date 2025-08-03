@@ -65,22 +65,22 @@ const ModuleDescription: React.FC = () => {
           ]}
         />
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
-          <div className="bg-blue-600 px-6 py-4">
+          <div className="bg-smartmind-medium px-6 py-4">
             <h1 className="text-2xl font-bold text-white">{module.name}</h1>
           </div>
           <div className="p-6">
             {/* Meta Information */}
             <div className="flex flex-wrap gap-4 mb-6">
               <div className="flex items-center text-gray-600">
-                <ClockIcon className="h-5 w-5 mr-2 text-blue-600" />
+                <ClockIcon className="h-5 w-5 mr-2 text-smartmind-dark" />
                 <span>{module.duration}</span>
               </div>
               <div className="flex items-center text-gray-600">
-                <UsersIcon className="h-5 w-5 mr-2 text-blue-600" />
+                <UsersIcon className="h-5 w-5 mr-2 text-smartmind-dark" />
                 <span>{module.instructors.join(', ')}</span>
               </div>
               <div className="flex items-center text-gray-600">
-                <BookOpenIcon className="h-5 w-5 mr-2 text-blue-600" />
+                <BookOpenIcon className="h-5 w-5 mr-2 text-smartmind-dark" />
                 <span>Prerequisites: {module.prerequisites.join(', ')}</span>
               </div>
             </div>
@@ -111,7 +111,7 @@ const ModuleDescription: React.FC = () => {
                 <ul className="space-y-2 text-gray-700">
                   {module.topics.map((topic, index) => (
                     <li key={index} className="flex items-center">
-                      <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-2 text-xs font-semibold">
+                      <div className="w-6 h-6 bg-smartmind-medium text-white rounded-full flex items-center justify-center mr-2 text-xs font-semibold">
                         {index + 1}
                       </div>
                       {topic}
@@ -128,10 +128,10 @@ const ModuleDescription: React.FC = () => {
                       className="flex justify-between items-center py-2 border-b border-gray-200 last:border-b-0"
                     >
                       <div className="flex items-center">
-                        <AwardIcon className="h-4 w-4 text-blue-600 mr-2" />
+                        <AwardIcon className="h-4 w-4 text-smartmind-dark mr-2" />
                         <span className="text-gray-700">{assessment.name}</span>
                       </div>
-                      <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                      <span className="bg-smartmind-light text-smartmind-dark text-xs font-semibold px-2.5 py-0.5 rounded">
                         {assessment.weight}
                       </span>
                     </div>
@@ -144,7 +144,7 @@ const ModuleDescription: React.FC = () => {
             <div className="mt-8 flex justify-center">
               <Link
                 to={`/module/${module.moduleId}/quizzes`}
-                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-smartmind-dark hover:bg-smartmind-medium"
               >
                 Take Quizzes for this Module
               </Link>
