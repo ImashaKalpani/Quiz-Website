@@ -11,6 +11,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/contact")
+@CrossOrigin(origins = "http://localhost:5173") // React frontend port
+
 public class ContactController {
 
     private final ContactService contactService;
@@ -20,7 +22,7 @@ public class ContactController {
         this.contactService = contactService;
     }
 
-    @PostMapping
+    @PostMapping("/save") // 👈 Now supports /api/contact/save
     public ResponseEntity<?> submitContactForm(@RequestBody Contact contact) {
         try {
             Contact savedContact = contactService.saveContact(contact);

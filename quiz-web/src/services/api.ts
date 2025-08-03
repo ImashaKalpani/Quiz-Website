@@ -1,36 +1,54 @@
 // src/services/api.ts
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:8081/api';
+const API_BASE_URL = "http://localhost:8081/api";
+
+// create axios instance
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 // Existing API calls
 export const fetchModulesByYear = async (yearId: string) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/modules/year/${yearId}`);
+    const response = await api.get(`/modules/year/${yearId}`);
     return response.data;
   } catch (error) {
-    console.error('Error fetching modules:', error);
+    console.error("Error fetching modules:", error);
     return [];
   }
 };
 
 export const fetchAllModules = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/modules`);
+    const response = await api.get(`/modules`);
     return response.data;
   } catch (error) {
-    console.error('Error fetching modules:', error);
+    console.error("Error fetching modules:", error);
     return [];
   }
 };
 
-// ✅ New API call to get a single module description
 export const fetchModuleDescription = async (moduleId: string) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/descriptions/${moduleId}`);
+    const response = await api.get(`/descriptions/${moduleId}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching description for module ${moduleId}:`, error);
     return null;
+  }
+};
+
+// Contact form API call
+export const sendContactForm = async (formData: any) => {
+  try {
+    const response = await api.post("/contact/save", formData);
+    return response.data;
+  } catch (error: any) {
+    console.error("❌ Error submitting contact form:", error);
+    throw error;
   }
 };
