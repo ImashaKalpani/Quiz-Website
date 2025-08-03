@@ -194,16 +194,16 @@ const QuizSetup: React.FC = () => {
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
           <div className="p-6">
             <div className="mb-6">
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+              <div className="bg-smartmind-light border-l-4 border-smartmind-dark p-4 mb-6">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <HelpCircleIcon className="h-5 w-5 text-blue-400" />
+                    <HelpCircleIcon className="h-5 w-5 text-smartmind-dark" />
                   </div>
                   <div className="ml-3">
-                    <h3 className="text-sm font-medium text-blue-800">
+                    <h3 className="text-sm font-medium text-smartmind-dark">
                       Quiz Instructions
                     </h3>
-                    <div className="mt-2 text-sm text-blue-700">
+                    <div className="mt-2 text-sm text-smartmind-dark">
                       <ul className="list-disc pl-5 space-y-1">
                         <li>Select one quiz from the list below</li>
                         <li>
@@ -256,10 +256,10 @@ const QuizSetup: React.FC = () => {
                   </p>
                 </div>}
               <div className="mt-8 flex justify-center space-x-4">
-                <Link to={`/module/${moduleId}/description`} className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                <Link to={`/module/${moduleId}/description`} className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-smartmind-light">
                   Back to Module
                 </Link>
-                <button onClick={handleStartQuiz} disabled={selectedQuiz === null} className={`inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 ${selectedQuiz === null ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                <button onClick={handleStartQuiz} disabled={selectedQuiz === null} className={`inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-smartmind-dark hover:bg-smartmind-medium ${selectedQuiz === null ? 'opacity-50 cursor-not-allowed' : ''}`}>
                   Start Quiz
                 </button>
               </div>
