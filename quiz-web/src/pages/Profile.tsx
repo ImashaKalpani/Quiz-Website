@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import {
   UserIcon,
   MailIcon,
@@ -12,8 +12,8 @@ import {
   AwardIcon,
   BookOpenIcon,
   CheckCircleIcon,
-} from 'lucide-react';
-import Breadcrumb from '../components/Breadcrumb';
+} from "lucide-react";
+import Breadcrumb from "../components/Breadcrumb";
 
 const Profile: React.FC = () => {
   const { user } = useAuth();
@@ -23,18 +23,18 @@ const Profile: React.FC = () => {
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [profileData, setProfileData] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: '',
+    name: user?.name || "",
+    email: user?.email || "",
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showPasswordSection, setShowPasswordSection] = useState(false);
 
   // Load stored photo from localStorage on mount
   useEffect(() => {
-    const storedPhoto = localStorage.getItem('profilePhoto');
+    const storedPhoto = localStorage.getItem("profilePhoto");
     if (storedPhoto) {
       setProfilePhoto(storedPhoto);
     }
@@ -53,7 +53,7 @@ const Profile: React.FC = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         if (reader.result) {
-          localStorage.setItem('profilePhoto', reader.result.toString());
+          localStorage.setItem("profilePhoto", reader.result.toString());
         }
       };
       reader.readAsDataURL(file);
@@ -83,9 +83,9 @@ const Profile: React.FC = () => {
     // Mock password update logic here
     setProfileData((prev) => ({
       ...prev,
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: '',
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
     }));
     setShowSuccessMessage(true);
     setShowPasswordSection(false);
@@ -96,16 +96,44 @@ const Profile: React.FC = () => {
 
   // Mock quiz history data
   const quizHistory = [
-    { id: 1, module: 'Database Systems', score: '85%', date: '2023-06-15', questions: 20, correct: 17 },
-    { id: 2, module: 'Web Development', score: '92%', date: '2023-06-10', questions: 15, correct: 14 },
-    { id: 3, module: 'Computer Networks', score: '78%', date: '2023-06-05', questions: 25, correct: 19 },
-    { id: 4, module: 'Operating Systems', score: '88%', date: '2023-05-28', questions: 18, correct: 16 },
+    {
+      id: 1,
+      module: "Database Systems",
+      score: "85%",
+      date: "2023-06-15",
+      questions: 20,
+      correct: 17,
+    },
+    {
+      id: 2,
+      module: "Web Development",
+      score: "92%",
+      date: "2023-06-10",
+      questions: 15,
+      correct: 14,
+    },
+    {
+      id: 3,
+      module: "Computer Networks",
+      score: "78%",
+      date: "2023-06-05",
+      questions: 25,
+      correct: 19,
+    },
+    {
+      id: 4,
+      module: "Operating Systems",
+      score: "88%",
+      date: "2023-05-28",
+      questions: 18,
+      correct: 16,
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Breadcrumb items={[{ label: 'Profile' }]} />
+        <Breadcrumb items={[{ label: "Profile" }]} />
         <h1 className="text-3xl font-bold text-gray-900 mb-6">Your Profile</h1>
 
         {showSuccessMessage && (
@@ -114,7 +142,10 @@ const Profile: React.FC = () => {
               <CheckCircleIcon className="h-5 w-5 mr-2" />
               <span>Your changes have been saved successfully!</span>
             </div>
-            <button onClick={() => setShowSuccessMessage(false)} className="text-green-700">
+            <button
+              onClick={() => setShowSuccessMessage(false)}
+              className="text-green-700"
+            >
               <XIcon className="h-5 w-5" />
             </button>
           </div>
@@ -125,9 +156,16 @@ const Profile: React.FC = () => {
           <div className="lg:col-span-1">
             <div className="bg-[#e5efef] rounded-lg shadow-md p-6">
               <div className="flex flex-col items-center mb-6">
-                <div className="relative h-32 w-32 rounded-full overflow-hidden mb-4 border border-gray-300 cursor-pointer" title="Click to change profile photo">
+                <div
+                  className="relative h-32 w-32 rounded-full overflow-hidden mb-4 border border-gray-300 cursor-pointer"
+                  title="Click to change profile photo"
+                >
                   {profilePhoto ? (
-                    <img src={profilePhoto} alt="Profile" className="object-cover h-full w-full" />
+                    <img
+                      src={profilePhoto}
+                      alt="Profile"
+                      className="object-cover h-full w-full"
+                    />
                   ) : (
                     <UserIcon className="h-32 w-32 text-gray-500" />
                   )}
@@ -138,12 +176,16 @@ const Profile: React.FC = () => {
                     className="absolute inset-0 opacity-0 cursor-pointer"
                   />
                 </div>
-                <h2 className="text-xl font-semibold text-gray-900">{user?.name}</h2>
+                <h2 className="text-xl font-semibold text-gray-900">
+                  {user?.name}
+                </h2>
                 <p className="text-gray-600">{user?.email}</p>
               </div>
 
               <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Summary</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  Account Summary
+                </h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <ClockIcon className="h-5 w-5 text-blue-600 mr-3" />
@@ -170,9 +212,14 @@ const Profile: React.FC = () => {
               </div>
 
               <div className="border-t border-gray-200 pt-6 mt-6">
-                <button onClick={() => setShowPasswordSection(!showPasswordSection)} className="flex items-center text-blue-600 hover:text-blue-800">
+                <button
+                  onClick={() => setShowPasswordSection(!showPasswordSection)}
+                  className="flex items-center text-blue-600 hover:text-blue-800"
+                >
                   <KeyIcon className="h-4 w-4 mr-2" />
-                  {showPasswordSection ? 'Hide Password Form' : 'Change Password'}
+                  {showPasswordSection
+                    ? "Hide Password Form"
+                    : "Change Password"}
                 </button>
               </div>
             </div>
@@ -183,9 +230,14 @@ const Profile: React.FC = () => {
             {/* Profile Info Form */}
             <div className="bg-[#e5efef] rounded-lg shadow-md p-6 mb-8">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-semibold text-gray-900">Profile Information</h2>
+                <h2 className="text-xl font-semibold text-gray-900">
+                  Profile Information
+                </h2>
                 {!isEditMode && (
-                  <button onClick={() => setIsEditMode(true)} className="flex items-center text-sm text-blue-600 hover:text-blue-800">
+                  <button
+                    onClick={() => setIsEditMode(true)}
+                    className="flex items-center text-sm text-blue-600 hover:text-blue-800"
+                  >
                     <PencilIcon className="h-4 w-4 mr-1" />
                     Edit
                   </button>
@@ -196,7 +248,10 @@ const Profile: React.FC = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="space-y-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
                         Name
                       </label>
                       <div className="flex items-center">
@@ -213,7 +268,10 @@ const Profile: React.FC = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
                         Email
                       </label>
                       <div className="flex items-center">
@@ -250,7 +308,9 @@ const Profile: React.FC = () => {
               ) : (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500 mb-1">Name</h3>
+                    <h3 className="text-sm font-medium text-gray-500 mb-1">
+                      Name
+                    </h3>
                     <div className="flex items-center">
                       <UserIcon className="h-5 w-5 text-gray-400 mr-2" />
                       <p className="text-gray-900">{user?.name}</p>
@@ -258,7 +318,9 @@ const Profile: React.FC = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500 mb-1">Email</h3>
+                    <h3 className="text-sm font-medium text-gray-500 mb-1">
+                      Email
+                    </h3>
                     <div className="flex items-center">
                       <MailIcon className="h-5 w-5 text-gray-400 mr-2" />
                       <p className="text-gray-900">{user?.email}</p>
@@ -270,11 +332,16 @@ const Profile: React.FC = () => {
               {/* Password Change Form */}
               {showPasswordSection && (
                 <div className="mt-8 border-t border-gray-200 pt-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Change Password</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">
+                    Change Password
+                  </h3>
                   <form onSubmit={handlePasswordSubmit}>
                     <div className="space-y-4">
                       <div>
-                        <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label
+                          htmlFor="currentPassword"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
                           Current Password
                         </label>
                         <input
@@ -289,7 +356,10 @@ const Profile: React.FC = () => {
                       </div>
 
                       <div>
-                        <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label
+                          htmlFor="newPassword"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
                           New Password
                         </label>
                         <input
@@ -304,7 +374,10 @@ const Profile: React.FC = () => {
                       </div>
 
                       <div>
-                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label
+                          htmlFor="confirmPassword"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
                           Confirm New Password
                         </label>
                         <input
@@ -337,7 +410,9 @@ const Profile: React.FC = () => {
             <div className="bg-[#e5efef] rounded-lg shadow-md p-6">
               <div className="flex items-center mb-6">
                 <BarChart2Icon className="h-5 w-5 text-blue-600 mr-2" />
-                <h2 className="text-xl font-semibold text-gray-900">Quiz History</h2>
+                <h2 className="text-xl font-semibold text-gray-900">
+                  Quiz History
+                </h2>
               </div>
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
@@ -373,23 +448,27 @@ const Profile: React.FC = () => {
                     {quizHistory.map((quiz) => (
                       <tr key={quiz.id}>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm font-medium text-gray-900">{quiz.module}</div>
+                          <div className="text-sm font-medium text-gray-900">
+                            {quiz.module}
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span
                             className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                               parseInt(quiz.score) >= 80
-                                ? 'bg-green-100 text-green-800'
+                                ? "bg-green-100 text-green-800"
                                 : parseInt(quiz.score) >= 60
-                                ? 'bg-yellow-100 text-yellow-800'
-                                : 'bg-red-100 text-red-800'
+                                ? "bg-yellow-100 text-yellow-800"
+                                : "bg-red-100 text-red-800"
                             }`}
                           >
                             {quiz.score}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-500">{quiz.date}</div>
+                          <div className="text-sm text-gray-500">
+                            {quiz.date}
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {quiz.correct} / {quiz.questions} correct
@@ -401,11 +480,15 @@ const Profile: React.FC = () => {
               </div>
               {quizHistory.length === 0 ? (
                 <div className="text-center py-4">
-                  <p className="text-gray-500 italic">No quiz history available.</p>
+                  <p className="text-gray-500 italic">
+                    No quiz history available.
+                  </p>
                 </div>
               ) : (
                 <div className="mt-4 text-right">
-                  <button className="text-sm text-blue-600 hover:text-blue-800">View all history</button>
+                  <button className="text-sm text-blue-600 hover:text-blue-800">
+                    View all history
+                  </button>
                 </div>
               )}
             </div>

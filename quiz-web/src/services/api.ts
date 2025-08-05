@@ -52,3 +52,11 @@ export const sendContactForm = async (formData: any) => {
     throw error;
   }
 };
+
+export const registerUser = (name: string, email: string, password: string) =>
+  api.post("auth/register", { name, email, password });
+
+export const loginUser = (email: string, password: string) =>
+  api.post("auth/login", { email, password });
+
+export const fetchUserProfile = () => api.get("auth/profile");
