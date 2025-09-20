@@ -78,9 +78,7 @@ const AdminDashboard: React.FC = () => {
           padding: "20px 0",
         }}
       >
-        <h2 style={{ padding: "0 20px 20px", borderBottom: "1px solid #353b48" }}>
-          Admin Panel
-        </h2>
+       
         <div style={{ padding: "20px 0" }}>
           {["dashboard", "courses"].map((tab) => (
             <div
