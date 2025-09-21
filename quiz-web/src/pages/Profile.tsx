@@ -118,7 +118,7 @@ const Profile: React.FC = () => {
             <div className="bg-[#e5efef] rounded-lg shadow-md p-6">
               <div className="flex flex-col items-center mb-6">
                 <div
-                  className="relative h-32 w-32 rounded-full overflow-hidden mb-4 border border-gray-300 cursor-pointer"
+                  className="relative h-32 w-32 rounded-full overflow-hidden mb-10 border border-gray-300 cursor-pointer"
                   title="Click to change profile photo"
                 >
                   {profilePhoto ? (
