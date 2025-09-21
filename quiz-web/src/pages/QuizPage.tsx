@@ -87,7 +87,7 @@ const QuizPage: React.FC = () => {
           Submit Quiz
         </button>
       ) : (
-        <div className="mt-4 text-xl font-bold">
+        <div className="mt-4 text-3xl font-bold">
           You scored {score} / {quiz.questions.length}
         </div>
       )}
