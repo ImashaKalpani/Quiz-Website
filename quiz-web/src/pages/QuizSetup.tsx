@@ -36,8 +36,8 @@ const QuizSetup: React.FC = () => {
             onClick={() => setSelectedQuiz(quiz.id)}
             className={`p-4 border rounded cursor-pointer ${
               selectedQuiz === quiz.id
-                ? "border-blue-500 bg-blue-50"
-                : "border-gray-300 hover:border-blue-400"
+                ? "border-smartmind-dark bg-smartmind-very-light"
+                : "border-gray-300 hover:border-smartmind-dark"
             }`}
           >
             <h2 className="text-xl font-semibold">{quiz.title}</h2>
@@ -54,7 +54,7 @@ const QuizSetup: React.FC = () => {
         onClick={handleStartQuiz}
         className={`mt-6 px-4 py-2 rounded text-white ${
           selectedQuiz
-            ? "bg-blue-600 hover:bg-blue-700"
+            ? "bg-smartmind-dark hover:bg-smartmind-medium"
             : "bg-gray-400 cursor-not-allowed"
         }`}
       >
