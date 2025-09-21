@@ -88,7 +88,7 @@ const QuizPage: React.FC = () => {
         </button>
       ) : (
         <div className="mt-4 text-3xl font-bold">
-          You scored {score} / {quiz.questions.length}
+          Your scored : {score} / {quiz.questions.length}
         </div>
       )}
     </div>
