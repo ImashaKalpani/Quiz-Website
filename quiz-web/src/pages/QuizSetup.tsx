@@ -54,7 +54,7 @@ const QuizSetup: React.FC = () => {
         onClick={handleStartQuiz}
         className={`mt-10 px-6 py-3 rounded-xl font-medium text-lg transition-all duration-300 ${
           selectedQuiz
-            ? "bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-xl"
+            ? "bg-smartmind-dark text-white hover:bg-smartmind-medium shadow-md hover:shadow-xl"
             : "bg-gray-300 text-gray-600 cursor-not-allowed"
         }`}
       >

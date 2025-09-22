@@ -140,8 +140,8 @@ const QuizPage: React.FC = () => {
             className={`w-full md:w-auto px-8 py-3 rounded-xl font-semibold shadow-md transition text-white 
               ${
                 Object.keys(answers).length === quiz.questions.length
-                  ? "bg-indigo-600 hover:bg-indigo-700"
-                  : "bg-gray-400 cursor-not-allowed"
+                  ? "bg-smartmind-dark  hover:bg-ismartmind-medium"
+                  : "bg-smartmind-medium cursor-not-allowed"
               }`}
           >
             Submit Quiz
