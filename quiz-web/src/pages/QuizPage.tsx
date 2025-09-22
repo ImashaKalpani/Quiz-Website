@@ -140,7 +140,7 @@ const QuizPage: React.FC = () => {
             className={`w-full md:w-auto px-8 py-3 rounded-xl font-semibold shadow-md transition text-white 
               ${
                 Object.keys(answers).length === quiz.questions.length
-                  ? "bg-smartmind-dark  hover:bg-ismartmind-medium"
+                  ? "bg-smartmind-dark  hover:bg-smartmind-medium"
                   : "bg-smartmind-medium cursor-not-allowed"
               }`}
           >
