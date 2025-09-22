@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpenIcon, GraduationCapIcon, AwardIcon, TrendingUpIcon, UsersIcon, PlayCircleIcon } from 'lucide-react';
-import { useAuth } from '../context/AuthContext'; // Assuming useAuth is correctly imported from context
-import { fetchAllModules } from '../services/api'; // Keep if you intend to use this for dynamic module count
+import { BookOpenIcon, GraduationCapIcon, AwardIcon, TrendingUpIcon, UsersIcon, PlayCircleIcon, ChevronLeftIcon, ChevronRightIcon, StarIcon, ClockIcon, CheckCircleIcon } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { fetchAllModules } from '../services/api';
 
 // Define the yearsData outside the component to avoid re-creation on every render
 const yearsData = [
@@ -44,59 +44,134 @@ const yearsData = [
   },
 ];
 
+// Student testimonials data
+const testimonialsData = [
+  {
+    id: 1,
+    name: "Ashen Nimsara",
+    role: "Computer Science Student",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    quote: "SmartMind has been an invaluable resource for my studies. The interactive quizzes helped me identify gaps in my knowledge and better prepare for exams."
+  },
+  {
+    id: 2,
+    name: "Imalshi Kavidya",
+    role: "Software Engineering Student",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    quote: "The comprehensive module descriptions and targeted quizzes made a huge in my understanding of complex topics. Highly recommended!"
+  },
+  {
+    id: 3,
+    name: "Kavinda Jayashan",
+    role: "IT Security Student",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    quote: "As someone who learns by doing, the quiz format is perfect for me. I've seen grades improve significantly since I started using SmartMind."
+  },
+  {
+    id: 4,
+    name: "Sachini Perera",
+    role: "Data Science Student",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    quote: "The progress tracking feature helped me identify my weak areas and focus studies more effectively. My exam scores improved by 25%!"
+  },
+  {
+    id: 5,
+    name: "Dilshan Fernando",
+    role: "Network Engineering Student",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    quote: "The year-wise organization makes it easy to find relevant content. I love how the platform adapts to my academic level."
+  },
+  {
+    id: 6,
+    name: "Naduni Silva",
+    role: "AI & Machine Learning Student",
+    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    quote: "The visual design and user experience are exceptional. Studying feels less like a chore and more like an engaging activity."
+  }
+];
+
 const Home: React.FC = () => {
   const { user } = useAuth();
-
   const [totalModules, setTotalModules] = useState(0);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
     const getModuleCount = async () => {
       try {
-        // const modules = await fetchAllModules(); // Uncomment if you have this API
-        // setTotalModules(modules.length); // Update based on actual data
-        setTotalModules(yearsData.reduce((acc, year) => acc + year.modules, 0)); // Fallback for static data
+        setTotalModules(yearsData.reduce((acc, year) => acc + year.modules, 0));
       } catch (error) {
         console.error('Failed to fetch modules:', error);
-        setTotalModules(yearsData.reduce((acc, year) => acc + year.modules, 0)); // Fallback
+        setTotalModules(yearsData.reduce((acc, year) => acc + year.modules, 0));
       }
     };
     getModuleCount();
   }, []);
+
+  // Auto-scroll testimonials
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (isAutoPlaying) {
+      interval = setInterval(() => {
+        setCurrentTestimonial((prev) => 
+          prev === testimonialsData.length - 1 ? 0 : prev + 1
+        );
+      }, 5000); // Change testimonial every 5 seconds
+    }
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isAutoPlaying, testimonialsData.length]);
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => 
+      prev === testimonialsData.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => 
+      prev === 0 ? testimonialsData.length - 1 : prev - 1
+    );
+  };
+
+  const goToTestimonial = (index: number) => {
+    setCurrentTestimonial(index);
+  };
 
   return (
     <div className="min-h-screen bg-smartmind-very-light/50 font-sans">
       {/* Hero Section */}
       <div className="bg-smartmind-dark text-white shadow-xl py-20 md:py-32 overflow-hidden relative">
         {/* Animated Wave Background Layers */}
-        {/* Layer 1: Darker wave */}
         <div
           className="absolute inset-x-0 bottom-0 h-48 sm:h-64 lg:h-80 z-0 opacity-40 animate-wave-slide-1"
           style={{
             background: `linear-gradient(to top, rgba(75, 100, 141, 0.9), rgba(75, 100, 141, 0.5))`,
             clipPath: 'polygon(0 40%, 8% 50%, 15% 45%, 25% 55%, 35% 48%, 45% 58%, 55% 50%, 65% 60%, 75% 55%, 85% 65%, 95% 58%, 100% 68%, 100% 100%, 0% 100%)',
-            width: '200%' // Make it wider to allow continuous scrolling
+            width: '200%'
           }}
         ></div>
-        {/* Layer 2: Medium wave */}
         <div
           className="absolute inset-x-0 bottom-0 h-48 sm:h-64 lg:h-80 z-[1] opacity-50 animate-wave-slide-2"
           style={{
             background: `linear-gradient(to top, rgba(89, 135, 168, 0.9), rgba(89, 135, 168, 0.6))`,
             clipPath: 'polygon(0 50%, 10% 40%, 20% 55%, 30% 45%, 40% 60%, 50% 50%, 60% 65%, 70% 55%, 80% 70%, 90% 60%, 100% 75%, 100% 100%, 0% 100%)',
-            width: '200%' // Make it wider to allow continuous scrolling
+            width: '200%'
           }}
         ></div>
-        {/* Layer 3: Lighter wave */}
         <div
           className="absolute inset-x-0 bottom-0 h-48 sm:h-64 lg:h-80 z-[2] opacity-60 animate-wave-slide-1"
           style={{
             background: `linear-gradient(to top, rgba(185, 228, 244, 0.9), rgba(185, 228, 244, 0.7))`,
             clipPath: 'polygon(0 60%, 12% 50%, 22% 65%, 34% 55%, 48% 70%, 60% 60%, 75% 75%, 88% 65%, 100% 80%, 100% 100%, 0% 100%)',
-            width: '200%' // Make it wider to allow continuous scrolling
+            width: '200%'
           }}
         ></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"> {/* z-10 ensures content is above waves */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl leading-tight text-smartmind-light animate-slide-in-top-smooth">
             Welcome to <span className="text-white drop-shadow-lg">SmartMind</span>
           </h1>
@@ -123,81 +198,6 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Welcome Back Section (Conditional based on user login) */}
-      {user && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 animate-fade-in-up delay-300">
-          <div className="bg-white shadow-2xl rounded-2xl p-8 transform hover:scale-[1.005] transition-transform duration-300 overflow-hidden border border-smartmind-light/20">
-            <div className="flex items-center mb-6">
-              <div className="flex-shrink-0 bg-smartmind-light/20 rounded-full p-4 animate-scale-in-delay">
-                <BookOpenIcon className="h-9 w-9 text-smartmind-dark" />
-              </div>
-              <div className="ml-5">
-                <h2 className="text-3xl font-bold text-gray-900 leading-snug animate-slide-in-left-smooth">
-                  Welcome back, <span className="text-smartmind-dark">{user?.name || 'User'}</span>!
-                </h2>
-                <p className="mt-1 text-lg text-gray-600 animate-fade-in-slow delay-700">Continue your exciting learning journey</p>
-              </div>
-            </div>
-            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-              {/* Continue Quiz Card */}
-              <div className="border border-smartmind-light/30 rounded-xl p-6 hover:bg-smartmind-very-light/70 transition-all duration-300 transform hover:-translate-y-1 shadow-md animate-slide-in-right-smooth delay-800">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800">
-                      Continue where you left off
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-600">
-                      Database Design - Quiz 2
-                    </p>
-                  </div>
-                  <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full animate-pulse-fade">
-                    In Progress
-                  </span>
-                </div>
-                <div className="mt-5">
-                  <div className="w-full bg-smartmind-very-light rounded-full h-3">
-                    <div className="bg-smartmind-light h-3 rounded-full shadow-md" style={{ width: '45%' }}></div>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-2 font-medium">45% complete</p>
-                </div>
-                <button className="mt-6 w-full text-smartmind-dark hover:text-smartmind-medium font-semibold text-base py-2 rounded-md border border-smartmind-light/50 hover:border-smartmind-medium transition-colors duration-300 group">
-                  <span className="flex items-center justify-center">
-                    Resume Quiz <PlayCircleIcon className="h-4 w-4 ml-2 group-hover:scale-110 transition-transform duration-200" />
-                  </span>
-                </button>
-              </div>
-              {/* Recent Achievement Card */}
-              <div className="border border-smartmind-light/30 rounded-xl p-6 hover:bg-smartmind-very-light/70 transition-all duration-300 transform hover:-translate-y-1 shadow-md animate-slide-in-left-smooth delay-900">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800">
-                      Recent Achievement
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-600">
-                      Programming Fundamentals - Quiz 3
-                    </p>
-                  </div>
-                  <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    Completed
-                  </span>
-                </div>
-                <div className="mt-5 flex items-center">
-                  <AwardIcon className="h-6 w-6 text-yellow-500 mr-2 animate-bounce-scale" />
-                  <span className="text-gray-700 font-semibold text-lg">Score: 92%</span>
-                </div>
-                <button className="mt-6 w-full text-smartmind-dark hover:text-smartmind-medium font-semibold text-base py-2 rounded-md border border-smartmind-light/50 hover:border-smartmind-medium transition-colors duration-300 group">
-                  <span className="flex items-center justify-center">
-                    View Results <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Years Section */}
       <div id="years" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -240,6 +240,157 @@ const Home: React.FC = () => {
               </div>
             </Link>
           ))}
+        </div>
+      </div>
+
+      {/* Testimonials Section with Auto-Scroll Carousel */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-smartmind-very-light">
+        <h2 className="text-3xl font-bold text-smartmind-dark mb-10 text-center">
+          What Students Say
+        </h2>
+        
+        <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl p-8 md:p-12">
+          {/* Carousel Container */}
+          <div 
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+          >
+            {testimonialsData.map((testimonial, index) => (
+              <div 
+                key={testimonial.id}
+                className="w-full flex-shrink-0 px-4 flex flex-col md:flex-row items-center"
+              >
+                <div className="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                  <div className="relative">
+                    <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-smartmind-light shadow-lg">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                      />
+                    </div>
+                    <div className="absolute -bottom-2 -right-2 bg-smartmind-light text-smartmind-dark p-2 rounded-full shadow-md">
+                      <UsersIcon className="h-6 w-6" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="md:w-2/3 md:pl-12 text-center md:text-left">
+                  <div className="mb-6">
+                    <div className="text-smartmind-dark text-4xl font-bold mb-2">"</div>
+                    <p className="text-lg text-gray-700 italic leading-relaxed">
+                      {testimonial.quote}
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">{testimonial.name}</h3>
+                    <p className="text-smartmind-medium font-medium">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevTestimonial}
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-smartmind-light transition-colors duration-200 z-10"
+          >
+            <ChevronLeftIcon className="h-6 w-6 text-smartmind-dark" />
+          </button>
+          
+          <button
+            onClick={nextTestimonial}
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-smartmind-light transition-colors duration-200 z-10"
+          >
+            <ChevronRightIcon className="h-6 w-6 text-smartmind-dark" />
+          </button>
+          
+          {/* Indicators */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {testimonialsData.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToTestimonial(index)}
+                onMouseEnter={() => setIsAutoPlaying(false)}
+                onMouseLeave={() => setIsAutoPlaying(true)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentTestimonial 
+                    ? 'bg-smartmind-dark scale-125' 
+                    : 'bg-gray-300 hover:bg-smartmind-medium'
+                }`}
+              />
+            ))}
+          </div>
+          
+          {/* Auto-play toggle */}
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+              className="text-sm text-gray-500 hover:text-smartmind-dark transition-colors duration-200 flex items-center"
+            >
+              <span className="mr-2">{isAutoPlaying ? 'Pause' : 'Play'}</span>
+              <div className={`w-4 h-4 border-2 border-gray-500 rounded-sm flex items-center justify-center ${isAutoPlaying ? 'bg-smartmind-light' : ''}`}>
+                {isAutoPlaying ? (
+                  <div className="w-1 h-1 bg-smartmind-dark rounded-sm"></div>
+                ) : (
+                  <div className="w-0 h-0 border-t-4 border-b-4 border-l-6 border-transparent border-l-gray-500 ml-0.5"></div>
+                )}
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* New Promotional Banner */}
+      <div className="bg-gradient-to-r from-smartmind-very-light to-smartmind-very-light text-black py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="md:w-2/3 mb-8 md:mb-0">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Ready to Boost Your Learning?
+              </h2>
+              <p className="text-lg md:text-xl opacity-90 mb-6">
+                Join thousands of students who have improved their grades with SmartMind's interactive quizzes and progress tracking.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex items-center">
+                  <StarIcon className="h-5 w-5 text-smartmind-dark  mr-2" />
+                  <span>Personalized learning paths</span>
+                </div>
+                <div className="flex items-center">
+                  <ClockIcon className="h-5 w-5 text-smartmind-dark mr-2" />
+                  <span>Track your progress over time</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircleIcon className="h-5 w-5 text-smartmind-dark mr-2" />
+                  <span>Identify knowledge gaps</span>
+                </div>
+              </div>
+            </div>
+            <div className="md:w-1/3 flex justify-center">
+              <div className="bg-white text-smartmind-dark rounded-xl p-6 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                <h3 className="text-xl font-bold mb-4 text-center">Start Learning Today</h3>
+                <div className="text-center">
+                  <Link
+                    to="/year/1"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-smartmind-dark text-white rounded-full font-semibold hover:bg-smartmind-darker transition-colors duration-300"
+                  >
+                    <PlayCircleIcon className="h-5 w-5 mr-2" />
+                    Get Started
+                  </Link>
+                </div>
+                <p className="text-sm text-center mt-4 text-gray-600">
+                  No credit card required. Free to start.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
