@@ -147,31 +147,34 @@ const QuizPage: React.FC = () => {
             Submit Quiz
           </button>
         ) : (
-          <div className="mt-10 text-center">
-            {/* Score */}
-            <div className="text-3xl font-bold mb-2 text-gray-800">
-              You scored: {score} / {quiz.questions.length} ({percentage}%)
-            </div>
-
-            {/* Performance mark on next row */}
-            <div
-              className={`text-2xl font-semibold mb-6 inline-block px-6 py-3 rounded-2xl ${performanceColor}`}
-            >
-              {performanceText}
-            </div>
-
-            {attempts < maxAttempts ? (
-              <button
-                onClick={loadQuiz}
-                className="px-20 py-3 rounded-xl font-semibold shadow-md bg-gray-800 text-white hover:bg-gray-900 transition"
+          <div className="mt-10">
+            {/* Score and Performance */}
+            <div className="text-center mb-8">
+              <div className="text-3xl font-bold mb-2 text-gray-800">
+                You scored: {score} / {quiz.questions.length} ({percentage}%)
+              </div>
+              <div
+                className={`text-2xl font-semibold inline-block px-6 py-3 rounded-2xl ${performanceColor}`}
               >
-                Retake Quiz ({attempts}/{maxAttempts})
-              </button>
-            ) : (
-              <p className="text-red-600 font-semibold text-lg mt-4">
-                🚫 You have reached the maximum of {maxAttempts} attempts.
-              </p>
-            )}
+                {performanceText}
+              </div>
+            </div>
+
+            {/* Retake Button aligned to the right */}
+            <div className="flex justify-end">
+              {attempts < maxAttempts ? (
+                <button
+                  onClick={loadQuiz}
+                  className="px-10 py-3 rounded-xl font-semibold shadow-md bg-gray-800 text-white hover:bg-gray-900 transition"
+                >
+                  Retake Quiz ({attempts}/{maxAttempts})
+                </button>
+              ) : (
+                <p className="text-red-600 font-semibold text-lg">
+                  🚫 You have reached the maximum of {maxAttempts} attempts.
+                </p>
+              )}
+            </div>
           </div>
         )}
       </div>

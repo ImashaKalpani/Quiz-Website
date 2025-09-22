@@ -418,19 +418,19 @@ const Home: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-center gap-2">
-                  <StarIcon className="h-6 w-6 text-indigo-600" />
+                  <StarIcon className="h-6 w-6 text-smartmind-dark" />
                   <span className="font-medium text-gray-800">
                     Personalized learning paths
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <ClockIcon className="h-6 w-6 text-indigo-600" />
+                  <ClockIcon className="h-6 w-6 text-smartmind-dark" />
                   <span className="font-medium text-gray-800">
                     Track your progress over time
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircleIcon className="h-6 w-6 text-indigo-600" />
+                  <CheckCircleIcon className="h-6 w-6 text-smartmind-dark" />
                   <span className="font-medium text-gray-800">
                     Identify knowledge gaps
                   </span>
@@ -447,7 +447,7 @@ const Home: React.FC = () => {
                 <div className="text-center">
                   <Link
                     to="/year/1"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white rounded-full font-semibold shadow-md hover:bg-indigo-700 transition-colors duration-300"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-smartmind-dark text-white rounded-full font-semibold shadow-md hover:bg-smartmind-medium transition-colors duration-300"
                   >
                     <PlayCircleIcon className="h-5 w-5 mr-2" />
                     Get Started
