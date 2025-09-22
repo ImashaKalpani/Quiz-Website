@@ -403,7 +403,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* New Promotional Banner */}
-      <div className="bg-gradient-to-r from-indigo-50 via-indigo-100 to-indigo-50 text-gray-900 py-20">
+      <div className="bg-gradient-to-r from-indigo-50 via-smartmind-very-light to-smartmind-light text-gray-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-10">
             {/* Left content */}
