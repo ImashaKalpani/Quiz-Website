@@ -37,7 +37,7 @@ const QuizSetup: React.FC = () => {
             onClick={() => setSelectedQuiz(quiz.id)}
             className={`p-6 rounded-2xl shadow-md transition-all duration-300 cursor-pointer ${
               selectedQuiz === quiz.id
-                ? "border-2 border-indigo-600 bg-indigo-50 scale-105 shadow-lg"
+                ? "border-2 border-smartmind-medium  bg-indigo-50 scale-105 shadow-lg"
                 : "border border-gray-200 bg-white hover:shadow-lg hover:scale-[1.02]"
             }`}
           >

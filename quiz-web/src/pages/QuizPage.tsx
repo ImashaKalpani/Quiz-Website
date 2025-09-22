@@ -163,7 +163,7 @@ const QuizPage: React.FC = () => {
             {attempts < maxAttempts ? (
               <button
                 onClick={loadQuiz}
-                className="px-8 py-3 rounded-xl font-semibold shadow-md bg-gray-800 text-white hover:bg-gray-900 transition"
+                className="px-20 py-3 rounded-xl font-semibold shadow-md bg-gray-800 text-white hover:bg-gray-900 transition"
               >
                 Retake Quiz ({attempts}/{maxAttempts})
               </button>
