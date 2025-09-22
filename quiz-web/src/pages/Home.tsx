@@ -12,6 +12,7 @@ import {
   StarIcon,
   ClockIcon,
   CheckCircleIcon,
+  CircleArrowLeftIcon,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { fetchAllModules } from "../services/api";
@@ -433,6 +434,12 @@ const Home: React.FC = () => {
                   <CheckCircleIcon className="h-6 w-6 text-smartmind-dark" />
                   <span className="font-medium text-gray-800">
                     Identify knowledge gaps
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CircleArrowLeftIcon className="h-6 w-6 text-smartmind-dark" />
+                  <span className="font-medium text-gray-800">
+                    Achieve mastery goals
                   </span>
                 </div>
               </div>
