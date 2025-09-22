@@ -20,31 +20,31 @@ const QuizSetup: React.FC = () => {
 
   const handleStartQuiz = () => {
     if (selectedQuiz) {
-      // Navigate to QuizPage with quizId
       navigate(`/module/${moduleId}/quiz/${selectedQuiz}`);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <h1 className="text-3xl font-bold mb-4">Quizzes for Module</h1>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex flex-col items-center">
+      <h1 className="text-4xl font-extrabold mb-8 text-gray-800 tracking-tight">
+        Quizzes for Module
+      </h1>
 
-      <div className="grid gap-4">
+      <div className="grid gap-6 w-full max-w-3xl">
         {quizzes.map((quiz) => (
           <div
             key={quiz.id}
             onClick={() => setSelectedQuiz(quiz.id)}
-            className={`p-4 border rounded cursor-pointer ${
+            className={`p-6 rounded-2xl shadow-md transition-all duration-300 cursor-pointer ${
               selectedQuiz === quiz.id
-                ? "border-smartmind-dark bg-smartmind-very-light"
-                : "border-gray-300 hover:border-smartmind-dark"
+                ? "border-2 border-indigo-600 bg-indigo-50 scale-105 shadow-lg"
+                : "border border-gray-200 bg-white hover:shadow-lg hover:scale-[1.02]"
             }`}
           >
-            <h2 className="text-xl font-semibold">{quiz.title}</h2>
-            <p>
-              {quiz.totalQuestions} Questions • {quiz.timeLimit || "N/A"}{" "}
-              Minutes
-            </p>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+              {quiz.title}
+            </h2>
+            <p className="text-gray-600">{quiz.totalQuestions} Questions</p>
           </div>
         ))}
       </div>
@@ -52,10 +52,10 @@ const QuizSetup: React.FC = () => {
       <button
         disabled={!selectedQuiz}
         onClick={handleStartQuiz}
-        className={`mt-6 px-4 py-2 rounded text-white ${
+        className={`mt-10 px-6 py-3 rounded-xl font-medium text-lg transition-all duration-300 ${
           selectedQuiz
-            ? "bg-smartmind-dark hover:bg-smartmind-medium"
-            : "bg-gray-400 cursor-not-allowed"
+            ? "bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-xl"
+            : "bg-gray-300 text-gray-600 cursor-not-allowed"
         }`}
       >
         Start Quiz

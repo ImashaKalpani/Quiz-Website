@@ -32,11 +32,11 @@ const Profile: React.FC = () => {
   useEffect(() => {
     const storedPhoto = localStorage.getItem("profilePhoto");
     const storedProfileData = localStorage.getItem("profileData");
-    
+
     if (storedPhoto) {
       setProfilePhoto(storedPhoto);
     }
-    
+
     if (storedProfileData) {
       setProfileData(JSON.parse(storedProfileData));
     } else {
@@ -83,7 +83,7 @@ const Profile: React.FC = () => {
     e.preventDefault();
     // Save profile data to localStorage
     localStorage.setItem("profileData", JSON.stringify(profileData));
-    
+
     setShowSuccessMessage(true);
     setIsEditMode(false);
     setTimeout(() => {
@@ -140,7 +140,9 @@ const Profile: React.FC = () => {
                 <h2 className="text-xl font-semibold text-gray-900 text-center">
                   {profileData.name || user?.name}
                 </h2>
-                <p className="text-gray-600 text-center">{profileData.email || user?.email}</p>
+                <p className="text-gray-600 text-center">
+                  {profileData.email || user?.email}
+                </p>
               </div>
             </div>
           </div>
@@ -293,7 +295,9 @@ const Profile: React.FC = () => {
                     </h3>
                     <div className="flex items-center">
                       <UserIcon className="h-5 w-5 text-gray-400 mr-2" />
-                      <p className="text-gray-900">{profileData.name || user?.name}</p>
+                      <p className="text-gray-900">
+                        {profileData.name || user?.name}
+                      </p>
                     </div>
                   </div>
 
@@ -303,7 +307,9 @@ const Profile: React.FC = () => {
                     </h3>
                     <div className="flex items-center">
                       <MailIcon className="h-5 w-5 text-gray-400 mr-2" />
-                      <p className="text-gray-900">{profileData.email || user?.email}</p>
+                      <p className="text-gray-900">
+                        {profileData.email || user?.email}
+                      </p>
                     </div>
                   </div>
 
